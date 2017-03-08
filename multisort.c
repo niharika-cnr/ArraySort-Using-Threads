@@ -114,35 +114,31 @@ void* merge(void *params)	{
 	parameters *p = (parameters *)params;
 	
 	int 	  first = p->start;
-	int fhalf_end = p->end/2;
 	int 		last = p->end;
+	int fhalf_end = last/2;
 	int shalf_end = last;
 	
-	int i = first;
-	int j = fhalf_end;
-	int k;
+	int i,j,k;
 			
 	/* Merges both the sorted halves */
-	for(k=0 ; k<last ; k++)	{
-		
-		if(i>=fhalf_end || j>=shalf_end)
-			break;
+	for(k=0, i = first, j = fhalf_end ; k<last && (i<fhalf_end&&j<shalf_end) ; k++)	{
 
-		//left-half element lesser than right-half element			
+		/* left-half element is lesser than right-half element */	
 		if(array[i]<array[j])
 			sortedArray[k]=array[i++];
 			
-		//left-half element greater than right-half element	
+		/* left-half element is greater than right-half element */
 		else if(array[i]>array[j])
 			sortedArray[k]=array[j++];
 		
+		/* left-half element is equal to right-half element */
 		else	{
 			sortedArray[k++]=array[j++];
 			sortedArray[k]=array[i++];
 		}
 	}//for-loop ends
 
-	/* Adds the remaining elements */
+	/* Inserts the remaining elements */
 	while(i<fhalf_end)
 		sortedArray[k++]=array[i++];
 		
