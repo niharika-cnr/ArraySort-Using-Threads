@@ -142,7 +142,7 @@ void* merge(void *params)	{
 		}
 	}//for-loop ends
 
-	/* Prints the remaining last element */
+	/* Adds the remaining elements */
 	while(i<fhalf_end)
 		sortedArray[k++]=array[i++];
 		
